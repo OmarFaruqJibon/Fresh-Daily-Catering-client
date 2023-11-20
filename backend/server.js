@@ -38,16 +38,6 @@ app.use('/api/items', require('./routes/itemsRoute'));
 
 
 
-
-
-
-
-
-
-
-
-
-
 //Listen
 app.listen(PORT, () => {
     console.log(`Server in running on port ${PORT}`);

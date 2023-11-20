@@ -6,7 +6,6 @@ import Items from './pages/Items';
 function App() {
   return (
     <>
-
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -15,11 +14,7 @@ function App() {
 
 
       </Routes>
-    
-    
-    
     </BrowserRouter>
-      
     </>
   );
 }
