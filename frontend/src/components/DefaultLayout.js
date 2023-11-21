@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -9,12 +10,15 @@ import {
   HomeOutlined,
   CopyOutlined,
   UnorderedListOutlined,
+  ShoppingCartOutlined,
+  SlackOutlined
 } from "@ant-design/icons";
 import "../style/layout.css";
 const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
+  const { cartItems } = useSelector((state) => state.rootReducer);
 
 
   const toggle = () => {
@@ -27,7 +31,9 @@ const DefaultLayout = ({ children }) => {
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          <h1 className="text-center text-light font-wight-bold mt-4">POS</h1>
+          <h3 className="text-center text-light font-wight-bold mt-3 mb-5">
+            <SlackOutlined />
+          </h3>
         </div>
         <Menu
           theme="dark"
@@ -60,6 +66,10 @@ const DefaultLayout = ({ children }) => {
               onClick: toggle,
             }
           )}
+          <div className="cart-items">
+            <span>{cartItems.length}</span>
+            <ShoppingCartOutlined />
+          </div>
         </Header>
         <Content
           className="site-layout-background"

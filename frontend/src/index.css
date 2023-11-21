@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.ant-menu-title-content a{
+  text-decoration: none !important;
+}
+.item-info{
+  margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ant-card{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.ant-card-body{
+  padding: 15px !important;
+}
+.item-info Button{
+  background-color: crimson;
+  color: white;
+  font-weight: 600;
+  
+}
+.item-info Button:hover{
+  background-color: rgb(2, 0, 92) !important;
+  color: rgb(255, 255, 255) !important;
+
+}

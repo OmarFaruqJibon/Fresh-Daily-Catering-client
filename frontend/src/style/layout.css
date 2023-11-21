@@ -5,6 +5,8 @@
     font-size: 25px !important;
     font-weight: 700 !important;
 }
+
+
 #components-layout-demo-custom-trigger .trigger {
     padding: 0 24px;
     font-size: 18px;
@@ -45,10 +47,37 @@
   }
   
   .anticon svg {
-    height: 20px;
-    width: 20px;
-    font-size: 20px;
+    height: 17px;
+    width: 17px;
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+  }
+
+  .ant-layout-header{
+    line-height: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cart-items{
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  .cart-items svg{
+    height: 28px;
+    width: 28px;
+    margin-left: 5px;
+  }
+
+  .logo svg{
+    height: 50px;
+    width: 50px;
+  }
+
+.trigger svg{
+    margin-left: 15px;
   }

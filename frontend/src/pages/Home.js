@@ -31,7 +31,7 @@ const Home = () => {
             <Row>
                 {
                     itemsData.map(item =>
-                        <Col lg={6} md={12} sx={24} sm={6} >
+                        <Col lg={8} md={12} sx={24} sm={6} >
                             <ItemList item={item} />
                         </Col>
                     )}

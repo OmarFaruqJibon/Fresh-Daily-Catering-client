@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Button, Card } from 'antd';
 
 
 const ItemList = ({ item }) => {
@@ -7,12 +7,15 @@ const ItemList = ({ item }) => {
     return (
         <div>
             <Card
-                hoverable
-                style={{ width: 240, padding: 10, marginBottom: 20 }}
+                // hoverable
+                style={{ width: 250, padding: 10, marginBottom: 30, marginTop: 10 }}
                 cover={<img height={200} alt="example" src={item.image} />}
             >
                 <Meta title={item.name} />
-                <Meta title={item.price} />
+                <div className="item-info">
+                    <span>Price: $ {item.price}</span>
+                    <Button>Add to Cart</Button>
+                </div>
             </Card>
 
 
