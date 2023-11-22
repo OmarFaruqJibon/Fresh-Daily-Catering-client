@@ -14,12 +14,13 @@ import {
   SlackOutlined
 } from "@ant-design/icons";
 import "../style/layout.css";
+import Spinner from './Spinner';
 const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = ({ children }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
-  const { cartItems } = useSelector((state) => state.rootReducer);
+  const { cartItems, loading } = useSelector((state) => state.rootReducer);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems))
@@ -33,6 +34,7 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Layout>
+      {loading && <Spinner />}
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h3 className="text-center text-light font-wight-bold mt-3 mb-5">

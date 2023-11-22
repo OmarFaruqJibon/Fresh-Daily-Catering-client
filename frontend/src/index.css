@@ -42,3 +42,16 @@ code {
 .ant-table-thead.ant-table-cell{
   font-weight: 700 !important;
 }
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.spinner-border {
+  height: 100px;
+  width: 100px;
+}
