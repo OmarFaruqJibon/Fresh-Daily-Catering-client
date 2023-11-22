@@ -8,7 +8,7 @@ const ItemList = ({ item }) => {
     const handleAddToCart = () => {
         dispatch({
             type: 'ADD_TO_CART',
-            payload: item
+            payload: { ...item, quentity: 1 }
         })
     }
 
@@ -18,7 +18,7 @@ const ItemList = ({ item }) => {
             <Card
                 // hoverable
                 style={{ width: 250, padding: 10, marginBottom: 30, marginTop: 10 }}
-                cover={<img height={200} alt="example" src={item.image} />}
+                cover={<img height={200} alt={item.name} src={item.image} />}
             >
                 <Meta title={item.name} />
                 <div className="item-info">
