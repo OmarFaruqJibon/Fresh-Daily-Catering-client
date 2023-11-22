@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {
   MenuUnfoldOutlined,
@@ -17,9 +17,13 @@ import "../style/layout.css";
 const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = ({ children }) => {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const { cartItems } = useSelector((state) => state.rootReducer);
 
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems))
+  }, [cartItems])
 
   const toggle = () => {
     setCollapsed(
@@ -57,7 +61,10 @@ const DefaultLayout = ({ children }) => {
           </Menu.Item>
         </Menu>
       </Sider>
+
       <Layout className="site-layout">
+
+        {/* Header section */}
         <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -66,11 +73,15 @@ const DefaultLayout = ({ children }) => {
               onClick: toggle,
             }
           )}
-          <div className="cart-items">
+
+          {/* cart */}
+          <div className="cart-items" onClick={() => navigate('/cart')}>
             <span>{cartItems.length}</span>
             <ShoppingCartOutlined />
           </div>
         </Header>
+
+        {/* Body section */}
         <Content
           className="site-layout-background"
           style={{

@@ -1,16 +1,16 @@
 const items = [
   {
-    name: "Tea",
-    price: 1,
-    category: "drinks",
+    name: "Chicken Burger",
+    price: 15,
+    category: "snacks",
     image:
-      "https://img.etimg.com/photo/msid-69212931,quality-100/chai-itself-was-once-a-trend-that-developed-this-way-.jpg",
+      "https://i.postimg.cc/mZ8SBnMr/burger2.jpg",
   },
   {
-    name: "coffee",
+    name: "Thai Tea",
     price: 2,
     category: "drinks",
-    image: "https://i.cdn.newsbytesapp.com/images/l110_14211532861690.jpg",
+    image: "https://i.postimg.cc/RVgZZ7V9/Masala-Chai-Featured.jpg",
   },
   {
     name: "Chicken Biryani",
