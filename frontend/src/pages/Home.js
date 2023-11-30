@@ -30,9 +30,7 @@ const Home = () => {
     console.log(itemsData);
 
     return (
-
         <DefaultLayout>
-
             <Row>
                 {
                     itemsData.map(item =>
@@ -41,18 +39,9 @@ const Home = () => {
                         </Col>
                     )}
 
-
             </Row>
 
-
-
-
-
-
-
-
         </DefaultLayout>
-
 
     );
 };
