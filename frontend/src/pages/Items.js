@@ -10,27 +10,28 @@ const Items = () => {
 
     const [itemsData, setItemsData] = useState([]);
     const [popupMoal, setPopupModal] = useState(false);
+    const [editItem, setEditItem] = useState(null);
+
+
+    const getAllItems = async () => {
+
+        try {
+            dispatch({
+                type: "SHOW_LOADING",
+            });
+            const { data } = await axios.get('http://localhost:8080/api/items/get-item');
+            setItemsData(data)
+            dispatch({ type: "HIDE_LOADING" });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
-        const getAllItems = async () => {
-
-            try {
-                dispatch({
-                    type: "SHOW_LOADING",
-                });
-                const { data } = await axios.get('http://localhost:8080/api/items/get-item');
-                setItemsData(data)
-                dispatch({ type: "HIDE_LOADING" });
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
         getAllItems();
     }, []);
 
-    // console.log(itemsData);
 
     const columns = [
         { title: "Name", dataIndex: 'name' },
@@ -45,27 +46,57 @@ const Items = () => {
             dataIndex: '_id',
             render: (id, record) =>
                 <div>
-                    <FormOutlined className='mx-3' style={{ cursor: 'pointer' }} />
+                    <FormOutlined
+                        className='mx-3'
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                            setEditItem(record)
+                            setPopupModal(true)
+                        }}
+
+                    />
                     <DeleteOutlined style={{ cursor: 'pointer' }} />
                 </div>
         }
     ]
 
-    const onFinish = async (values) => {
-        try {
-            dispatch({
-                type: "SHOW_LOADING",
-            });
+    const handleOnSubmit = async (values) => {
+        if (editItem === null) {
+            // add new item
+            try {
+                dispatch({
+                    type: "SHOW_LOADING",
+                });
 
-            const res = await axios.post('http://localhost:8080/api/items/add-item', values);
-            message.success("Item add successfully.")
+                const res = await axios.post('http://localhost:8080/api/items/add-item', values);
+                message.success("Item add successfully.")
+                setPopupModal(false);
+                getAllItems();
+                dispatch({ type: "HIDE_LOADING" });
 
-            dispatch({ type: "HIDE_LOADING" });
+            } catch (error) {
+                console.log(error);
+                message.success("Item add failed!")
+            }
+        } else {
+            // edit item
+            try {
+                dispatch({
+                    type: "SHOW_LOADING",
+                });
 
-        } catch (error) {
-            console.log(error);
-            message.success("Item add failed!")
+                await axios.put('http://localhost:8080/api/items/edit-item', { ...values, itemId: editItem._id });
+                message.success("Item update successfully.")
+                setPopupModal(false);
+                getAllItems();
+                dispatch({ type: "HIDE_LOADING" });
+
+            } catch (error) {
+                console.log(error);
+                message.success("Item update failed!")
+            }
         }
+
 
     };
 
@@ -78,42 +109,45 @@ const Items = () => {
 
             <Table columns={columns} dataSource={itemsData} />
 
-            <Modal title="Add New Item" open={popupMoal} onCancel={() => setPopupModal(false)} footer={false}>
+            {popupMoal &&
+                <Modal
+                    title={` ${editItem !== null ? "Edit Item" : "Add New Item"} `}
+                    open={popupMoal} onCancel={() => {
+                        setPopupModal(false)
+                        setEditItem(null)
+                    }}
+                    footer={false}
+                >
 
-                <Form layout="vertical" onFinish={onFinish}>
+                    <Form layout="vertical" initialValues={editItem} onFinish={handleOnSubmit}>
+                        <Form.Item name="name" label="Name">
+                            <input type="text" />
+                        </Form.Item>
 
-                    <Form.Item name="name" label="Name">
-                        <input type="text" />
-                    </Form.Item>
+                        <Form.Item name="price" label="Price">
+                            <input />
+                        </Form.Item>
 
-                    <Form.Item name="price" label="Price">
-                        <input />
-                    </Form.Item>
+                        <Form.Item name="image" label="Image URL">
+                            <input type="text" />
+                        </Form.Item>
 
-                    <Form.Item name="image" label="Image URL">
-                        <input type="text" />
-                    </Form.Item>
+                        <Form.Item name="category" label="Category">
+                            <Select>
+                                <Select.Option value="snacks">Snacks</Select.Option>
+                                <Select.Option value="drinks">Drinks</Select.Option>
+                                <Select.Option value="rice">Rice</Select.Option>
+                            </Select>
+                        </Form.Item>
 
-                    <Form.Item name="category" label="Category">
-                        <Select>
-                            <Select.Option value="snacks">Snacks</Select.Option>
-                            <Select.Option value="drinks">Drinks</Select.Option>
-                            <Select.Option value="rice">Rice</Select.Option>
-                        </Select>
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-
-                </Form>
-
-            </Modal>
-
-
-
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+            }
 
         </DefaultLayout>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'antd';
+import { Button, Card, message } from 'antd';
 import { useDispatch } from 'react-redux'
 
 const ItemList = ({ item }) => {
@@ -9,7 +9,8 @@ const ItemList = ({ item }) => {
         dispatch({
             type: 'ADD_TO_CART',
             payload: { ...item, quentity: 1 }
-        })
+        });
+        message.success("Add to card successfully.")
     }
 
     const { Meta } = Card;

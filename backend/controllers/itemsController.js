@@ -7,10 +7,10 @@ const getItemController = async (req, res) => {
         const items = await itemModel.find();
         res.status(200).send(items);
 
-      } catch (error) {
+    } catch (error) {
 
         console.log(error);
-      }
+    }
 };
 
 const addItemController = async (req, res) => {
@@ -24,5 +24,18 @@ const addItemController = async (req, res) => {
 };
 
 
+const editItemController = async (req, res) => {
+    try {
+        const { itemId } = req.body;
+        await itemModel.findOneAndUpdate({ _id: itemId }, req.body, {
+            new: true,
+        });
+        res.status(200).send("Item updated.")
+    } catch (error) {
+        es.status(400).send(error)
+    }
+}
 
-module.exports = {getItemController, addItemController};
+
+
+module.exports = { getItemController, addItemController, editItemController };

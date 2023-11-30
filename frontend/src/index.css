@@ -42,6 +42,9 @@ code {
 .ant-table-thead.ant-table-cell{
   font-weight: 700 !important;
 }
+.ant-table-cell img{
+  border-radius: 5px;
+}
 
 .spinner {
   position: absolute;
