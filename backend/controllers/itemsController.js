@@ -26,16 +26,27 @@ const addItemController = async (req, res) => {
 
 const editItemController = async (req, res) => {
     try {
+        console.log(req.body);
         const { itemId } = req.body;
         await itemModel.findOneAndUpdate({ _id: itemId }, req.body, {
             new: true,
         });
         res.status(200).send("Item updated.")
     } catch (error) {
-        es.status(400).send(error)
+        res.status(400).send(error);
     }
 }
 
 
+const deleteItemController = async (req, res) => {
+    try {
+        const { itemId } = req.body;
+        await itemModel.findOneAndDelete({ _id: itemId });
+        res.status(200).send("Item updated.")
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
 
-module.exports = { getItemController, addItemController, editItemController };
+
+module.exports = { getItemController, addItemController, editItemController, deleteItemController };

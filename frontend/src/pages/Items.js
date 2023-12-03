@@ -12,7 +12,6 @@ const Items = () => {
     const [popupMoal, setPopupModal] = useState(false);
     const [editItem, setEditItem] = useState(null);
 
-
     const getAllItems = async () => {
 
         try {
@@ -31,7 +30,6 @@ const Items = () => {
     useEffect(() => {
         getAllItems();
     }, []);
-
 
     const columns = [
         { title: "Name", dataIndex: 'name' },
@@ -53,9 +51,13 @@ const Items = () => {
                             setEditItem(record)
                             setPopupModal(true)
                         }}
-
                     />
-                    <DeleteOutlined style={{ cursor: 'pointer' }} />
+                    <DeleteOutlined
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                            handleDelete(record)
+                        }}
+                    />
                 </div>
         }
     ]
@@ -77,6 +79,7 @@ const Items = () => {
             } catch (error) {
                 console.log(error);
                 message.success("Item add failed!")
+                dispatch({ type: "HIDE_LOADING" });
             }
         } else {
             // edit item
@@ -94,11 +97,30 @@ const Items = () => {
             } catch (error) {
                 console.log(error);
                 message.success("Item update failed!")
+                dispatch({ type: "HIDE_LOADING" });
             }
         }
-
-
     };
+
+
+    const handleDelete = async (record) => {
+        console.log(record._id);
+        try {
+            dispatch({
+                type: "SHOW_LOADING",
+            });
+
+            await axios.post('http://localhost:8080/api/items/delete-item', { itemId: record._id });
+            message.success("Item delete successfully.")
+            getAllItems();
+            dispatch({ type: "HIDE_LOADING" });
+
+        } catch (error) {
+            console.log(error);
+            message.success("Item delete failed!")
+            dispatch({ type: "HIDE_LOADING" });
+        }
+    }
 
     return (
         <DefaultLayout>

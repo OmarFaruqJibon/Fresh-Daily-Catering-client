@@ -1,5 +1,5 @@
 const express = require("express");
-const { getItemController, addItemController, editItemController } = require('../controllers/itemsController');
+const { getItemController, addItemController, editItemController, deleteItemController } = require('../controllers/itemsController');
 
 const router = express.Router();
 
@@ -17,9 +17,14 @@ router.post('/add-item', addItemController);
 
 
 /**
- * @ api {post}   edit items
+ * @ api {put}   edit items
  */
 router.put('/edit-item', editItemController)
+
+/**
+ * @ api {post}   delete items
+ */
+router.post('/delete-item', deleteItemController)
 
 
 
