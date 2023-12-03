@@ -58,3 +58,22 @@ code {
   height: 100px;
   width: 100px;
 }
+
+
+
+.category {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.category img {
+  margin-left: 10px;
+}
+
+.category-active {
+  color: crimson;
+}
+
+

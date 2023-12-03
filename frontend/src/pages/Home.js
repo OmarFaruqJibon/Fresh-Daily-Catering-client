@@ -9,6 +9,27 @@ const Home = () => {
     const dispatch = useDispatch();
     const [itemsData, setItemsData] = useState([]);
 
+    const [selecedCategory, setSelecedCategory] = useState("Snacks");
+    const categories = [
+        {
+            name: "All",
+            // imageUrl: "https://cdn-icons-png.flaticon.com/512/430/430561.png",
+        },
+        {
+            name: "Snacks",
+            // imageUrl: "https://cdn-icons-png.flaticon.com/512/1471/1471262.png",
+        },
+        {
+            name: "Drinks",
+            // imageUrl: "https://cdn-icons-png.flaticon.com/512/430/430561.png",
+        },
+        {
+            name: "Rice",
+            // imageUrl: "https://cdn-icons-png.flaticon.com/512/3174/3174880.png",
+        },
+
+    ];
+
     useEffect(() => {
         const getAllItems = async () => {
 
@@ -31,9 +52,28 @@ const Home = () => {
 
     return (
         <DefaultLayout>
+            <div className="d-flex">
+                {categories.map((category) => (
+                    <div
+                        key={category.name}
+                        className={`d-flex category ${selecedCategory.toLowerCase() === category.name.toLowerCase() && "category-active"
+                            }`}
+                        onClick={() => setSelecedCategory(category.name)}
+                    >
+                        <p>{category.name}</p>
+                        {/* <img
+                            src={category.imageUrl}
+                            alt={category.name}
+                            height="40"
+                            width="60"
+                        /> */}
+                    </div>
+                ))}
+            </div>
+
             <Row>
                 {
-                    itemsData.map(item =>
+                    itemsData.filter((i) => i.category.toLowerCase() === selecedCategory.toLowerCase()).map(item =>
                         <Col lg={8} md={12} sx={24} sm={6} >
                             <ItemList item={item} />
                         </Col>
