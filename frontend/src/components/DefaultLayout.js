@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {
   MenuUnfoldOutlined,
@@ -19,6 +19,7 @@ const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = ({ children }) => {
   const navigate = useNavigate();
+
   const [collapsed, setCollapsed] = useState(false);
   const { cartItems, loading } = useSelector((state) => state.rootReducer);
 
@@ -31,6 +32,12 @@ const DefaultLayout = ({ children }) => {
       !collapsed
     );
   };
+
+  const handleLogout = () => {
+    console.log("logout");
+    localStorage.removeItem('auth');
+    navigate('/login')
+  }
 
   return (
     <Layout>
@@ -58,7 +65,7 @@ const DefaultLayout = ({ children }) => {
           <Menu.Item key="/customers" icon={<UserOutlined />}>
             <Link to="/customers">Cutomers</Link>
           </Menu.Item>
-          <Menu.Item key="/logout" icon={<LogoutOutlined />}>
+          <Menu.Item key="/logout" icon={<LogoutOutlined />} onClick={() => handleLogout()}>
             Logout
           </Menu.Item>
         </Menu>

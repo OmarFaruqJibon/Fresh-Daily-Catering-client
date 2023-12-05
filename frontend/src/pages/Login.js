@@ -28,6 +28,7 @@ const Login = () => {
             dispatch({ type: "HIDE_LOADING" });
         }
     }
+
     //currently login  user
     useEffect(() => {
         if (localStorage.getItem("auth")) {
@@ -35,6 +36,7 @@ const Login = () => {
             navigate("/");
         }
     }, [navigate]);
+
     return (
         <div className='register'>
             <h3 >Login</h3>
