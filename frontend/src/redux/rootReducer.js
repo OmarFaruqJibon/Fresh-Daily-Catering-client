@@ -15,6 +15,7 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.map((item) =>
+
                     item._id === action.payload._id
                         ? { ...item, quentity: action.payload.quentity }
                         : item

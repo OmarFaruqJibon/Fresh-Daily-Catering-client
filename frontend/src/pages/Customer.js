@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
+import { useDispatch } from 'react-redux';
+import axios from "axios";
+import { Table } from "antd";
 
 const Customer = () => {
+
+
+    const dispatch = useDispatch();
+    const [billsData, setBillsData] = useState([]);
+
+
+    // fetch all bills from database
+    const getAllBills = async () => {
+        try {
+            dispatch({
+                type: "SHOW_LOADING",
+            });
+            const { data } = await axios.get("http://localhost:8080/api/bills/get-bill");
+            setBillsData(data);
+            dispatch({ type: "HIDE_LOADING" });
+            // console.log(data);
+        } catch (error) {
+            dispatch({ type: "HIDE_LOADING" });
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getAllBills();
+    }, []);
+
+
+    const columns = [
+        {
+            title: "Cutomer Name",
+            dataIndex: "customerName",
+        },
+        { title: "ID", dataIndex: "_id" },
+        { title: "Address", dataIndex: "customerAddress" },
+        { title: "Quentity", dataIndex: "totalItems" },
+        { title: "Total Spend", dataIndex: "totalBill" },
+
+    ];
+
+
     return (
         <DefaultLayout>
-            customer
+
+            <Table columns={columns} dataSource={billsData} bordered pagination={false} />
+
         </DefaultLayout>
     );
 };

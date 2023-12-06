@@ -2,11 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { useDispatch } from "react-redux";
 import { EyeOutlined } from "@ant-design/icons";
-// import ReactToPrint from "react-to-print";
 import { useReactToPrint } from "react-to-print";
 import axios from "axios";
 import { Modal, Button, Table } from "antd";
 import "../style/InvoiceStyles.css";
+
 
 
 const Bills = () => {
@@ -15,7 +15,9 @@ const Bills = () => {
     const [billsData, setBillsData] = useState([]);
     const [popupModal, setPopupModal] = useState(false);
     const [selectedBill, setSelectedBill] = useState(null);
+    const [currentDate, setCurrentDate] = useState(getDate());
 
+    // fetch all bills from database
     const getAllBills = async () => {
         try {
             dispatch({
@@ -24,27 +26,25 @@ const Bills = () => {
             const { data } = await axios.get("http://localhost:8080/api/bills/get-bill");
             setBillsData(data);
             dispatch({ type: "HIDE_LOADING" });
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             dispatch({ type: "HIDE_LOADING" });
             console.log(error);
         }
     };
-    //useEffect
+
     useEffect(() => {
         getAllBills();
-        //eslint-disable-next-line
     }, []);
 
 
-    //print function
+    //print bill invoice
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
 
-    //able data
+
     const columns = [
-        // { title: "ID ", dataIndex: "_id" },
         {
             title: "Cutomer Name",
             dataIndex: "customerName",
@@ -69,7 +69,17 @@ const Bills = () => {
             ),
         },
     ];
-    console.log(selectedBill);
+
+    // getting date when billing
+    function getDate() {
+        const today = new Date();
+        const month = today.getMonth() + 1;
+        const year = today.getFullYear();
+        const date = today.getDate();
+        return `${date}.${month}.${year}`;
+    }
+
+
     return (
         <DefaultLayout>
             <div className="d-flex justify-content-between">
@@ -103,6 +113,7 @@ const Bills = () => {
 
                         </center>
                         {/*End InvoiceTop*/}
+
                         <div id="mid">
                             <div className="mt-2">
                                 <p>
@@ -113,6 +124,7 @@ const Bills = () => {
                                     Address : <b>{selectedBill.customerAddress}</b>
                                     <br />
                                     {/* Date : <b>{selectedBill.date.toString().substring(0, 10)}</b> */}
+                                    Date: {currentDate}
                                     <br />
                                 </p>
                                 <hr style={{ margin: "5px" }} />
@@ -141,7 +153,8 @@ const Bills = () => {
                                         </tr>
                                         {selectedBill.cartItems.map((item) => (
                                             <>
-                                                <tr className="service">
+
+                                                <tr className="service" key={item._id}>
                                                     <td className="tableitem">
                                                         <p className="itemtext">{item.name}</p>
                                                     </td>

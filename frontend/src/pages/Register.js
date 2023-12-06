@@ -24,7 +24,7 @@ const Register = () => {
 
         } catch (error) {
             console.log(error);
-            message.success("Register failed!")
+            message.error("Register failed!")
             dispatch({ type: "HIDE_LOADING" });
         }
     }

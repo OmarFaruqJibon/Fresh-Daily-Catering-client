@@ -48,7 +48,7 @@ const Home = () => {
 
         getAllItems();
     }, ([]));
-    console.log(itemsData);
+    // console.log(itemsDsata);
 
     return (
         <DefaultLayout>

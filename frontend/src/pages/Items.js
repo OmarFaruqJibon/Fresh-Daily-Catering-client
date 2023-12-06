@@ -78,7 +78,7 @@ const Items = () => {
 
             } catch (error) {
                 console.log(error);
-                message.success("Item add failed!")
+                message.error("Item add failed!")
                 dispatch({ type: "HIDE_LOADING" });
             }
         } else {
@@ -96,7 +96,7 @@ const Items = () => {
 
             } catch (error) {
                 console.log(error);
-                message.success("Item update failed!")
+                message.error("Item update failed!")
                 dispatch({ type: "HIDE_LOADING" });
             }
         }
@@ -117,7 +117,7 @@ const Items = () => {
 
         } catch (error) {
             console.log(error);
-            message.success("Item delete failed!")
+            message.error("Item delete failed!")
             dispatch({ type: "HIDE_LOADING" });
         }
     }
