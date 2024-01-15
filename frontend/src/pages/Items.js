@@ -66,6 +66,7 @@ const Items = () => {
         if (editItem === null) {
             // add new item
             try {
+
                 dispatch({
                     type: "SHOW_LOADING",
                 });
@@ -158,7 +159,10 @@ const Items = () => {
                             <Select>
                                 <Select.Option value="snacks">Snacks</Select.Option>
                                 <Select.Option value="drinks">Drinks</Select.Option>
+                                <Select.Option value="cookies">Cookies</Select.Option>
+                                <Select.Option value="sweets">Sweets</Select.Option>
                                 <Select.Option value="rice">Rice</Select.Option>
+                                <Select.Option value="cake">Cake</Select.Option>
                             </Select>
                         </Form.Item>
 

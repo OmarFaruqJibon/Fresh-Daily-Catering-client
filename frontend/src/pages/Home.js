@@ -11,21 +11,35 @@ const Home = () => {
 
     const [selecedCategory, setSelecedCategory] = useState("Snacks");
     const categories = [
-        {
-            name: "All",
-            // imageUrl: "https://cdn-icons-png.flaticon.com/512/430/430561.png",
-        },
+
         {
             name: "Snacks",
-            // imageUrl: "https://cdn-icons-png.flaticon.com/512/1471/1471262.png",
-        },
-        {
-            name: "Drinks",
-            // imageUrl: "https://cdn-icons-png.flaticon.com/512/430/430561.png",
+            imageUrl: "https://i.postimg.cc/J0nQmpJp/Asset-10-20x20_(1).png",
         },
         {
             name: "Rice",
-            // imageUrl: "https://cdn-icons-png.flaticon.com/512/3174/3174880.png",
+            imageUrl: "https://i.postimg.cc/MG97q98r/japanese-food.png",
+        },
+
+        {
+            name: "Cake",
+            imageUrl: "https://i.postimg.cc/hjKrZDGW/Asset-11-20x20.png",
+        },
+        {
+            name: "Drinks",
+            imageUrl: "https://i.postimg.cc/qvdS3vCH/poinsettia.png",
+        },
+        {
+            name: "Sweets",
+            imageUrl: "https://i.postimg.cc/wvFkSCtt/Asset-8-20x20.png",
+        },
+        {
+            name: "Cookies",
+            imageUrl: "https://i.postimg.cc/zfC7kb8F/Asset-9-1-20x20.png",
+        },
+        {
+            name: "Others",
+            imageUrl: "https://i.postimg.cc/zGR0V2QM/Asset-7-20x20.png",
         },
 
     ];
@@ -52,21 +66,23 @@ const Home = () => {
 
     return (
         <DefaultLayout>
-            <div className="d-flex">
+            <h1 className='home-title'>Products & Categories</h1>
+            <div className="category-container">
+
                 {categories.map((category) => (
                     <div
                         key={category.name}
-                        className={`d-flex category ${selecedCategory.toLowerCase() === category.name.toLowerCase() && "category-active"
+                        className={`category ${selecedCategory.toLowerCase() === category.name.toLowerCase() && "category-active"
                             }`}
                         onClick={() => setSelecedCategory(category.name)}
                     >
                         <p>{category.name}</p>
-                        {/* <img
+                        <img
                             src={category.imageUrl}
                             alt={category.name}
-                            height="40"
-                            width="60"
-                        /> */}
+                            height="25"
+                            width="30"
+                        />
                     </div>
                 ))}
             </div>

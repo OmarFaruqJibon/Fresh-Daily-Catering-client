@@ -83,6 +83,8 @@ const DefaultLayout = ({ children }) => {
             }
           )}
 
+          {/* <h2 style={{ color: "crimson", fontWeight: 600, fontSize: "24px" }}>UNIQUE EXPORT</h2> */}
+
           {/* cart */}
           <div className="cart-items" onClick={() => navigate('/cart')}>
             <span>{cartItems.length}</span>
