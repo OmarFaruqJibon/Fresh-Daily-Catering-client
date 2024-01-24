@@ -106,12 +106,12 @@ const CartPage = () => {
 
     return (
         <DefaultLayout>
-            <p style={{ fontWeight: 700 }}>Shopping Cart</p>
+            <h1 className='home-title' style={{ textAlign: "none" }}>Confirm Bill</h1>
             <Table columns={columns} dataSource={cartItems} />
 
             <hr />
             <div className="d-flex justify-content-between mt-5">
-                <h5 style={{ color: 'crimson', fontWeight: 600 }}>Totall Bill - $ {bill}</h5>
+                <h5 style={{ color: 'crimson', fontWeight: 700 }}>Totall Bill - $ {bill}</h5>
                 <Button type='primary' onClick={() => setBillPopup(true)}>Create Invoice</Button>
             </div>
 
@@ -146,7 +146,7 @@ const CartPage = () => {
 
                     <Form.Item>
                         <div className="d-flex justify-content-between">
-                            <h6 style={{ color: 'crimson', fontWeight: 600 }}>Totall Bill - $ {bill}</h6>
+                            <h6 style={{ color: 'crimson', fontWeight: 700 }}>Totall Bill - $ {bill}</h6>
                             <Button type="primary" htmlType="submit">
                                 Submit
                             </Button>

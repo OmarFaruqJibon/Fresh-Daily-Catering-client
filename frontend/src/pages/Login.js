@@ -24,8 +24,9 @@ const Login = () => {
 
         } catch (error) {
             console.log(error);
-            message.success("Login failed!")
+            message.error("Login failed!")
             dispatch({ type: "HIDE_LOADING" });
+            navigate('/login');
         }
     }
 
@@ -51,7 +52,7 @@ const Login = () => {
                 </Form.Item>
 
                 <div className="d-flex justify-content-between">
-                    <p> New User? <Link to="/register"> Register</Link> </p>
+                    <p style={{ fontSize: "1em" }}> New User? <Link to="/register" style={{ textDecoration: "none" }}> Register</Link> </p>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Login

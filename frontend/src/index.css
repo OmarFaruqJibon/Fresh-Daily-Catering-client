@@ -122,3 +122,8 @@ code {
   background: green;
   transition: .5s;
 }
+
+.register h3{
+  font-weight: 700;
+  font-size: 2em;
+}

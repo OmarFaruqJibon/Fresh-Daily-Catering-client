@@ -32,7 +32,7 @@ const Register = () => {
 
     return (
         <div className='register'>
-            <h3 >Register</h3>
+            <h3>Register</h3>
             <Form layout="vertical" onFinish={handleOnSubmit}>
                 <Form.Item name="name" label="Name">
                     <Input />
@@ -47,7 +47,7 @@ const Register = () => {
                 </Form.Item>
 
                 <div className="d-flex justify-content-between">
-                    <p> Already Register? <Link to="/login"> Login</Link> </p>
+                    <p style={{ fontSize: "1em" }}> Already Register? <Link to="/login" style={{ textDecoration: "none" }}> Login</Link> </p>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Register

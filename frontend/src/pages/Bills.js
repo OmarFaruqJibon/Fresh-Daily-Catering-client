@@ -26,7 +26,7 @@ const Bills = () => {
             const { data } = await axios.get("http://localhost:8080/api/bills/get-bill");
             setBillsData(data);
             dispatch({ type: "HIDE_LOADING" });
-            // console.log(data);
+
         } catch (error) {
             dispatch({ type: "HIDE_LOADING" });
             console.log(error);
@@ -54,7 +54,7 @@ const Bills = () => {
         { title: "Total Amount", dataIndex: "totalBill" },
 
         {
-            title: "Actions",
+            title: "Invoice",
             dataIndex: "_id",
             render: (id, record) => (
                 <div>
@@ -78,12 +78,12 @@ const Bills = () => {
         const date = today.getDate();
         return `${date}.${month}.${year}`;
     }
-
+    const invoiceNo = Math.floor(Math.random() * 1000) + 100;
 
     return (
         <DefaultLayout>
             <div className="d-flex justify-content-between">
-                <h1>Invoice list</h1>
+                <h1 className='home-title'>Bills</h1>
             </div>
 
             <Table columns={columns} dataSource={billsData} bordered />
@@ -103,31 +103,48 @@ const Bills = () => {
 
                     {/* ============ invoice modal start ==============  */}
                     <div id="invoice-POS" ref={componentRef}>
-                        <center id="top">
-                            {/* <div className="logo" /> */}
-                            <div className="info">
-                                <h2>Unique Export</h2>
-                                <p> Contact : 54185156 | Rajshahi</p>
-                            </div>
-                            {/*End Info*/}
 
+                        <center id="top"> {/*company information*/}
+                            <div className="logo" />
+                            <div className="info">
+                                <h2>Fresh Daily Catering</h2>
+                                <p> Contact : +94185156 |  Rajshahi </p>
+
+                            </div>
+
+                            {/* <hr /> */}
                         </center>
                         {/*End InvoiceTop*/}
 
-                        <div id="mid">
-                            <div className="mt-2">
-                                <p>
-                                    Customer Name : <b>{selectedBill.customerName}</b>
+                        <div id="mid"> {/*Customer information*/}
+                            <div className="mt-2 customer-info">
+
+                                {/* Customer Name : <b>{selectedBill.customerName}</b>
                                     <br />
                                     Phone No : <b>{selectedBill.customerContact}</b>
                                     <br />
                                     Address : <b>{selectedBill.customerAddress}</b>
                                     <br />
                                     {/* Date : <b>{selectedBill.date.toString().substring(0, 10)}</b> */}
-                                    Date: {currentDate}
+
+
+
+                                <p>
+                                    <p style={{ margin: "0", fontSize: "9px" }}><b>BILL TO </b></p>
+                                    <hr style={{ margin: "0", marginTop: "5px", marginBottom: "5px" }} />
+                                    {selectedBill.customerName}
+                                    <br />
+                                    {selectedBill.customerContact}
+                                    <br />
+                                    {selectedBill.customerAddress}
+                                    <br />
+
                                     <br />
                                 </p>
-                                <hr style={{ margin: "5px" }} />
+
+                                <p className="invoice-no">Invoice No: {invoiceNo} <br /> Date: {currentDate} </p>
+
+                                {/* <hr style={{ margin: "5px" }} /> */}
                             </div>
                         </div>
 

@@ -44,9 +44,17 @@ const DefaultLayout = ({ children }) => {
       {loading && <Spinner />}
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          <h3 className="text-center text-light font-wight-bold mt-3 mb-5">
+          <a href="/#">
+            <img className="text-center mt-3 mb-5" src="https://i.postimg.cc/nzfs679R/logo.png" alt="" />
+          </a>
+
+
+          {/* <h3 className="text-center text-light font-wight-bold mt-3 mb-5">
             <SlackOutlined />
-          </h3>
+
+          </h3> */}
+
+
         </div>
         <Menu
           theme="dark"

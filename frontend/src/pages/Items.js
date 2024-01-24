@@ -126,8 +126,9 @@ const Items = () => {
     return (
         <DefaultLayout>
             <div className="d-flex justify-content-between">
-                <h5>Items</h5>
-                <Button type='primary' onClick={() => setPopupModal(true)}>Add Item</Button>
+                <h1 className='home-title'>All Products</h1>
+
+                <Button type='primary' onClick={() => setPopupModal(true)}>Add New Product</Button>
             </div>
 
             <Table columns={columns} dataSource={itemsData} />

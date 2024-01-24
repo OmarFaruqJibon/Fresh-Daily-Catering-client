@@ -81,3 +81,13 @@
 .trigger svg{
     margin-left: 15px;
   }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+  }
+  .logo img{
+    width: 70px;
+    display: flex;
+    justify-content: center;
+  }

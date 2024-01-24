@@ -40,7 +40,9 @@ p {
 }
 
 #top {
-  min-height: 100px;
+  min-height: 75px;
+  /* display: flex;
+  justify-content: space-between; */
 }
 
 #bot {
@@ -52,18 +54,11 @@ p {
   height: 60px;
   width: 60px;
   border-radius: 20%;
-  background: url(https://yt3.ggpht.com/ytc/AKedOLRB0XGxEABopk8qJ2-CcnA0UoVyC7TarDi5PJwGIQ=s176-c-k-c0x00ffffff-no-rj-mo)
+  background: url(https://i.postimg.cc/d0Fp422Q/logo-bg.png)
     no-repeat;
   background-size: 50px 50px;
 }
-.clientlogo {
-  float: left;
-  height: 60px;
-  width: 60px;
-  background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-  background-size: 60px 60px;
-  border-radius: 50px;
-}
+
 .info {
   display: block;
   /* //float:left; */
@@ -108,4 +103,14 @@ table {
 .biller-info p{
   font-size: 8px;
 
+}
+
+.customer-info{
+  display: flex;
+  justify-content: space-between;
+}
+.invoice-no{
+  font-size: 8px;
+  float: right;
+  line-height: inherit;
 }
