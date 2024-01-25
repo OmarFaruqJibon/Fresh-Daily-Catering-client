@@ -18,6 +18,7 @@ const Register = () => {
             });
 
             await axios.post('http://localhost:8080/api/users/register', values);
+            localStorage.getItem("auth", JSON.stringify(values));
             message.success("Register successfully.")
             navigate('/login');
             dispatch({ type: "HIDE_LOADING" });

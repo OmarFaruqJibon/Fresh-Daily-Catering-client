@@ -70,8 +70,7 @@ const Home = () => {
             <div className="category-container">
 
                 {categories.map((category) => (
-                    <div
-                        key={category.name}
+                    <div key={category.name}
                         className={`category ${selecedCategory.toLowerCase() === category.name.toLowerCase() && "category-active"
                             }`}
                         onClick={() => setSelecedCategory(category.name)}
@@ -90,7 +89,7 @@ const Home = () => {
             <Row>
                 {
                     itemsData.filter((i) => i.category.toLowerCase() === selecedCategory.toLowerCase()).map(item =>
-                        <Col lg={8} md={12} sx={24} sm={6} >
+                        <Col key={item.name} lg={8} md={12} sx={24} sm={6} >
                             <ItemList item={item} />
                         </Col>
                     )}
