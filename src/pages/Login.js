@@ -15,7 +15,7 @@ const Login = () => {
                 type: "SHOW_LOADING",
             });
 
-            const res = await axios.post('http://localhost:8080/api/users/login', value);
+            const res = await axios.post('https://fresh-daily-catering-server.onrender.com/api/users/login', value);
             message.success("Login successfully.")
 
             dispatch({ type: "HIDE_LOADING" });

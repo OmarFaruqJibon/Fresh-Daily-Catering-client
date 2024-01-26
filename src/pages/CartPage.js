@@ -93,7 +93,7 @@ const CartPage = () => {
             }
             console.log(newBill);
 
-            await axios.post('http://localhost:8080/api/bills/create-bill', newBill);
+            await axios.post('https://fresh-daily-catering-server.onrender.com/api/bills/create-bill', newBill);
 
             message.success("Bill created successfully.")
             setBillPopup(false);

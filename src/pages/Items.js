@@ -18,7 +18,7 @@ const Items = () => {
             dispatch({
                 type: "SHOW_LOADING",
             });
-            const { data } = await axios.get('http://localhost:8080/api/items/get-item');
+            const { data } = await axios.get('https://fresh-daily-catering-server.onrender.com/api/items/get-item');
             setItemsData(data)
             dispatch({ type: "HIDE_LOADING" });
 
@@ -71,7 +71,7 @@ const Items = () => {
                     type: "SHOW_LOADING",
                 });
 
-                const res = await axios.post('http://localhost:8080/api/items/add-item', values);
+                const res = await axios.post('https://fresh-daily-catering-server.onrender.com/api/items/add-item', values);
                 message.success("Item add successfully.")
                 setPopupModal(false);
                 getAllItems();
@@ -89,7 +89,7 @@ const Items = () => {
                     type: "SHOW_LOADING",
                 });
 
-                await axios.put('http://localhost:8080/api/items/edit-item', { ...values, itemId: editItem._id });
+                await axios.put('https://fresh-daily-catering-server.onrender.com/api/items/edit-item', { ...values, itemId: editItem._id });
                 message.success("Item update successfully.")
                 setPopupModal(false);
                 getAllItems();
@@ -111,7 +111,7 @@ const Items = () => {
                 type: "SHOW_LOADING",
             });
 
-            await axios.post('http://localhost:8080/api/items/delete-item', { itemId: record._id });
+            await axios.post('https://fresh-daily-catering-server.onrender.com/api/items/delete-item', { itemId: record._id });
             message.success("Item delete successfully.")
             getAllItems();
             dispatch({ type: "HIDE_LOADING" });

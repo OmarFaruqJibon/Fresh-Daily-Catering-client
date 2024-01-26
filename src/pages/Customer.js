@@ -14,7 +14,7 @@ const Customer = () => {
             dispatch({
                 type: "SHOW_LOADING",
             });
-            const { data } = await axios.get("http://localhost:8080/api/bills/get-bill");
+            const { data } = await axios.get("https://fresh-daily-catering-server.onrender.com/api/bills/get-bill");
             setBillsData(data);
             dispatch({ type: "HIDE_LOADING" });
             // console.log(data);

@@ -17,7 +17,7 @@ const Register = () => {
                 type: "SHOW_LOADING",
             });
 
-            await axios.post('http://localhost:8080/api/users/register', values);
+            await axios.post('https://fresh-daily-catering-server.onrender.com/api/users/register', values);
             localStorage.getItem("auth", JSON.stringify(values));
             message.success("Register successfully.")
             navigate('/login');
