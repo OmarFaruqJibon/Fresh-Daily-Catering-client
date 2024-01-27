@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {
   MenuUnfoldOutlined,
@@ -10,8 +10,7 @@ import {
   HomeOutlined,
   CopyOutlined,
   UnorderedListOutlined,
-  ShoppingCartOutlined,
-  SlackOutlined
+  ShoppingCartOutlined
 } from "@ant-design/icons";
 import "../style/layout.css";
 import Spinner from './Spinner';

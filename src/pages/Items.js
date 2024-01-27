@@ -71,7 +71,7 @@ const Items = () => {
                     type: "SHOW_LOADING",
                 });
 
-                const res = await axios.post('https://fresh-daily-catering-server.onrender.com/api/items/add-item', values);
+                await axios.post('https://fresh-daily-catering-server.onrender.com/api/items/add-item', values);
                 message.success("Item add successfully.")
                 setPopupModal(false);
                 getAllItems();
